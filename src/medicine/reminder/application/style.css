@@ -1,0 +1,19 @@
+/* বাটনের ডিজাইন */
+.button {
+    -fx-background-color: #007BFF;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-background-radius: 5; /* বাটনের চারপাশ হালকা গোল করার জন্য */
+    -fx-padding: 8 20 8 20;
+}
+
+/* বাটনের উপর মাউস নিলে কালার চেঞ্জ হবে */
+.button:hover {
+    -fx-background-color: #0056B3;
+    -fx-cursor: hand;
+}
+
+/* পেজের ব্যাকগ্রাউন্ড */
+.root {
+    -fx-background-color: #F0F4F8;
+}
