@@ -31,8 +31,12 @@ public class DashboardController {
             String name = addView.getTxtName().getText();
             String dosage = addView.getTxtDosage().getText();
             String time = addView.getTxtTime().getText();
+            String date = "";
+            if(addView.getDatePicker().getValue()!=null){
+                date= addView.getDatePicker().getValue().toString();
+            }
             
-            Medicine newMedicine = new Medicine(name, dosage, time, "Pending");
+            Medicine newMedicine = new Medicine(name, dosage, date, time, "Pending");
             
             view.getMedicineTable().getItems().add(newMedicine);
             
@@ -58,10 +62,13 @@ public class DashboardController {
         java.time.LocalTime now = java.time.LocalTime.now();
         java.time.format.DateTimeFormatter formatter = java.time.format.DateTimeFormatter.ofPattern("hh:mm a", java.util.Locale.ENGLISH);
         String currentTime = now.format(formatter); 
+        String currentDate=java.time.LocalDate.now().toString();
 
         for (com.medicineapp.model.Medicine med : view.getMedicineTable().getItems()) {
             
-            if (med.getTime().toUpperCase().equals(currentTime.toUpperCase()) && med.getStatus().equals("Pending")) {
+            if (med.getDate().equals(currentDate) && 
+                med.getTime().toUpperCase().equals(currentTime.toUpperCase()) && 
+                med.getStatus().equals("Pending")) {
                 showAlarmPopup(med);
                 med.setStatus("Alerted"); 
                 view.getMedicineTable().refresh(); 

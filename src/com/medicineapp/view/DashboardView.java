@@ -27,7 +27,6 @@ public class DashboardView {
     }
 
     private void buildUI() {
-        // --- 1. Top Section (Header) ---
         VBox header = new VBox();
         header.setAlignment(Pos.CENTER);
         header.setPrefHeight(80.0);
@@ -58,6 +57,10 @@ public class DashboardView {
         colDosage.setPrefWidth(150);
         colDosage.setCellValueFactory(new PropertyValueFactory<>("dosage"));
         
+        TableColumn<Medicine, String> colDate = new TableColumn<>("Date");
+        colDate.setPrefWidth(120);
+        colDate.setCellValueFactory(new PropertyValueFactory<>("date"));
+        
         TableColumn<Medicine, String> colTime = new TableColumn<>("Time");
         colTime.setPrefWidth(150);
         colTime.setCellValueFactory(new PropertyValueFactory<>("time"));
@@ -66,7 +69,7 @@ public class DashboardView {
         colStatus.setPrefWidth(200);
         colStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
         
-        medicineTable.getColumns().addAll(colName, colDosage, colTime, colStatus);
+        medicineTable.getColumns().addAll(colName, colDosage, colDate, colTime, colStatus);
         centerBox.getChildren().addAll(tableLabel, medicineTable);
         
         root.setCenter(centerBox);
@@ -93,5 +96,8 @@ public class DashboardView {
     
     public TableView<Medicine> getMedicineTable() {
         return medicineTable;
+    }
+    public javafx.scene.layout.Region getView(){
+        return root;
     }
 }
